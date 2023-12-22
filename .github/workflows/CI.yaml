@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    paths:
+      - "hangman-front/**"
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: |
+          cd hangman-front
+          npm install
+          npm run build
+      - name: Run tests
+        run: |
+          npm test
