@@ -23,4 +23,5 @@ jobs:
           npm run build
       - name: Run tests
         run: |
+          cd hangman-front
           npm test
