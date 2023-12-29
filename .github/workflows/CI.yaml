@@ -26,4 +26,4 @@ jobs:
         with:
           context: ./hangman-front
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/jrod/bootcamplemoncode:latest
