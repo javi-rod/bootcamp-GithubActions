@@ -11,4 +11,6 @@ services:
     environment:
       - API_URL=http://localhost:3001
   hangman-e2e:
-    build: ./hangman-e2e/e2e
+    build:
+      context: ./hangman-e2e/e2e
+      dockerfile: e2e.dockerfile
