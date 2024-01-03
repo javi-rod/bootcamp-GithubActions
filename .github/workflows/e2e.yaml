@@ -1,25 +1,23 @@
-name: Manual E2E Test Workflow
+name: Manual E2E Test
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
+  cypress-run:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - name: Start API
+        run: docker run -d -p 3001:3000 jaimesalas/hangman-api
 
-      - name: Build and Run Docker Compose
-        run: |
-          docker-compose build
-          docker-compose up -d
+      - name: Start Frontend
+        run: docker run -d -p 8080:8080 -e API_URL=http://localhost:3001 jaimesalas/hangman-front
 
-      - name: Run E2E Tests
-        run: |
-          cd hangman-e2e/e2e
-          npm run open
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run open
+          working-directory: hangman-e2e/e2e
