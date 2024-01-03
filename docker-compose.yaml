@@ -13,4 +13,4 @@ services:
   hangman-e2e:
     build:
       context: ./hangman-e2e/e2e
-      dockerfile: e2e.dockerfile
+      dockerfile: cypress-16.dockerfile
